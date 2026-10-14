@@ -1,6 +1,6 @@
 # GStreamer
 
-This is GStreamer, a framework for streaming media.
+This is GStreamer, a framework for streaming media. **This fork modifies rtpopuspay and rtpopusdepay to comply with audio standards in [Apple's HomeKit Accessory Protocol Specification](https://forum.iobroker.net/assets/uploads/files/1634848447889-apple-spezifikation-homekit.pdf).**
 
 ## Where to start
 
