@@ -221,7 +221,6 @@ gst_rtp_opus_pay_setcaps (GstRTPBasePayload * payload, GstCaps * caps)
   const char *encoding_name = "OPUS";
   gint channels = 2;
   gint rate;
-  gint clock_rate = 48000;
   gchar *encoding_params;
 
   outcaps = gst_structure_new_empty ("unused");
