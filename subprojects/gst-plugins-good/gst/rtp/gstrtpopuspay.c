@@ -82,7 +82,7 @@ GST_STATIC_PAD_TEMPLATE ("src",
     GST_STATIC_CAPS ("application/x-rtp, "
         "media = (string) \"audio\", "
         "payload = (int) " GST_RTP_PAYLOAD_DYNAMIC_STRING ", "
-        "clock-rate = (int) 48000, "
+        "clock-rate = (int) [1, 2147483647], "
         "encoding-name = (string) { \"OPUS\", \"X-GST-OPUS-DRAFT-SPITTKA-00\", \"MULTIOPUS\" }")
     );
 
@@ -221,6 +221,7 @@ gst_rtp_opus_pay_setcaps (GstRTPBasePayload * payload, GstCaps * caps)
   const char *encoding_name = "OPUS";
   gint channels = 2;
   gint rate;
+  gint clock_rate = 48000;
   gchar *encoding_params;
 
   outcaps = gst_structure_new_empty ("unused");
@@ -312,7 +313,7 @@ gst_rtp_opus_pay_setcaps (GstRTPBasePayload * payload, GstCaps * caps)
   }
 
   gst_rtp_base_payload_set_options (payload, "audio", FALSE,
-      encoding_name, 48000);
+    encoding_name, gst_structure_get_int (s, "clock-rate", &clock_rate) ? clock_rate : 48000);
 
   res = gst_rtp_base_payload_set_outcaps_structure (payload, outcaps);
 
